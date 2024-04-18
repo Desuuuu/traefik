@@ -213,7 +213,7 @@ func setupServer(staticConfiguration *static.Configuration) (*server.Server, err
 
 	pluginBuilder, err := createPluginBuilder(staticConfiguration)
 	if err != nil {
-		log.WithoutContext().WithError(err).Error("Plugins are disabled because an error has occurred.")
+		return nil, err
 	}
 
 	// Providers plugins
