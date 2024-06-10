@@ -1,3 +1,31 @@
+## [v2.11.4](https://github.com/traefik/traefik/tree/v2.11.4) (2024-06-10)
+[All Commits](https://github.com/traefik/traefik/compare/v2.11.3...v2.11.4)
+
+**Bug fixes:**
+- **[acme]** Update go-acme/lego to v4.17.3 ([#10768](https://github.com/traefik/traefik/pull/10768) by [ldez](https://github.com/ldez))
+
+**Documentation:**
+- **[acme]** Fix .com and .org domain examples  ([#10635](https://github.com/traefik/traefik/pull/10635) by [rptaylor](https://github.com/rptaylor))
+- **[middleware]** Add a note about the Ratelimit middleware&#39;s behavior when the sourceCriterion header is missing ([#10752](https://github.com/traefik/traefik/pull/10752) by [dgutzmann](https://github.com/dgutzmann))
+- Add user guides link to getting started ([#10785](https://github.com/traefik/traefik/pull/10785) by [norlinhenrik](https://github.com/norlinhenrik))
+- Remove helm default repo warning as repo has been long deprecated ([#10772](https://github.com/traefik/traefik/pull/10772) by [corneliusroemer](https://github.com/corneliusroemer))
+
+## [v2.11.3](https://github.com/traefik/traefik/tree/v2.11.3) (2024-05-17)
+[All Commits](https://github.com/traefik/traefik/compare/v2.11.2...v2.11.3)
+
+**Bug fixes:**
+- **[server]** Remove deadlines for non-TLS connections ([#10615](https://github.com/traefik/traefik/pull/10615) by [rtribotte](https://github.com/rtribotte))
+- **[webui]** Display of Content Security Policy values getting out of screen ([#10710](https://github.com/traefik/traefik/pull/10710) by [brandonfl](https://github.com/brandonfl))
+- **[webui]** Fix provider icon size ([#10621](https://github.com/traefik/traefik/pull/10621) by [framebassman](https://github.com/framebassman))
+
+**Documentation:**
+- **[k8s/crd]** Fix migration/v2.md ([#10658](https://github.com/traefik/traefik/pull/10658) by [stemar94](https://github.com/stemar94))
+- **[k8s/gatewayapi]** Fix HTTPRoute use of backendRefs ([#10630](https://github.com/traefik/traefik/pull/10630) by [sakaru](https://github.com/sakaru))
+- **[k8s/gatewayapi]** Fix HTTPRoute path type ([#10629](https://github.com/traefik/traefik/pull/10629) by [sakaru](https://github.com/sakaru))
+- **[k8s]** Improve mirroring example on Kubernetes ([#10701](https://github.com/traefik/traefik/pull/10701) by [mloiseleur](https://github.com/mloiseleur))
+- Consistent entryPoints capitalization in CLI flag usage ([#10650](https://github.com/traefik/traefik/pull/10650) by [jnoordsij](https://github.com/jnoordsij))
+- Fix unfinished migration sentence for v2.11.2 ([#10633](https://github.com/traefik/traefik/pull/10633) by [kevinpollet](https://github.com/kevinpollet))
+
 ## [v2.11.2](https://github.com/traefik/traefik/tree/v2.11.2) (2024-04-11)
 [All Commits](https://github.com/traefik/traefik/compare/v2.11.1...v2.11.2)
 
