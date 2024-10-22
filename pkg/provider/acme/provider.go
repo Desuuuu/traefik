@@ -421,8 +421,7 @@ func (p *Provider) watchNewDomains(ctx context.Context) {
 
 						if len(route.TLS.Domains) > 0 {
 							domains := deleteUnnecessaryDomains(ctxRouter, route.TLS.Domains)
-							for i := range len(domains) {
-								domain := domains[i]
+							for _, domain := range domains {
 								safe.Go(func() {
 									dom, cert, err := p.resolveCertificate(ctx, domain, traefiktls.DefaultTLSStoreName)
 									if err != nil {
@@ -458,8 +457,7 @@ func (p *Provider) watchNewDomains(ctx context.Context) {
 
 						if len(route.TLS.Domains) > 0 {
 							domains := deleteUnnecessaryDomains(ctxRouter, route.TLS.Domains)
-							for i := range len(domains) {
-								domain := domains[i]
+							for _, domain := range domains {
 								safe.Go(func() {
 									dom, cert, err := p.resolveCertificate(ctx, domain, traefiktls.DefaultTLSStoreName)
 									if err != nil {
@@ -552,8 +550,11 @@ func (p *Provider) resolveDefaultCertificate(ctx context.Context, domains []stri
 
 	p.resolvingDomainsMutex.Lock()
 
-	sort.Strings(domains)
-	domainKey := strings.Join(domains, ",")
+	sortedDomains := make([]string, len(domains))
+	copy(sortedDomains, domains)
+	sort.Strings(sortedDomains)
+
+	domainKey := strings.Join(sortedDomains, ",")
 
 	if _, ok := p.resolvingDomains[domainKey]; ok {
 		p.resolvingDomainsMutex.Unlock()
@@ -728,7 +729,7 @@ func deleteUnnecessaryDomains(ctx context.Context, domains []types.Domain) []typ
 			}
 
 			// Check if CN or SANS to check already exists
-			// or can not be checked by a wildcard
+			// or cannot be checked by a wildcard
 			var newDomainsToCheck []string
 			for _, domainProcessed := range domainToCheck.ToStrArray() {
 				if idxDomain < idxDomainToCheck && isDomainAlreadyChecked(domainProcessed, domain.ToStrArray()) {
@@ -947,12 +948,14 @@ func (p *Provider) certExists(validDomains []string) bool {
 	p.certificatesMu.RLock()
 	defer p.certificatesMu.RUnlock()
 
-	sort.Strings(validDomains)
+	sortedDomains := make([]string, len(validDomains))
+	copy(sortedDomains, validDomains)
+	sort.Strings(sortedDomains)
 
 	for _, cert := range p.certificates {
 		domains := cert.Certificate.Domain.ToStrArray()
 		sort.Strings(domains)
-		if reflect.DeepEqual(domains, validDomains) {
+		if reflect.DeepEqual(domains, sortedDomains) {
 			return true
 		}
 	}

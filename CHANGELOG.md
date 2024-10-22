@@ -1,3 +1,56 @@
+## [v2.11.12](https://github.com/traefik/traefik/tree/v2.11.12) (2024-10-09)
+[All Commits](https://github.com/traefik/traefik/compare/v2.11.11...v2.11.12)
+
+**Bug fixes:**
+- **[middleware]** Bump github.com/klauspost/compress to dbd6c381492a ([#11162](https://github.com/traefik/traefik/pull/11162) by [kevinpollet](https://github.com/kevinpollet))
+- **[webui]** Upgrade to node 22.9 and yarn lock to fix vulnerabilities ([#11173](https://github.com/traefik/traefik/pull/11173) by [kevinpollet](https://github.com/kevinpollet))
+- **[webui]** Adopt a layout for the large amount of entrypoint port numbers ([#11157](https://github.com/traefik/traefik/pull/11157) by [framebassman](https://github.com/framebassman))
+
+**Documentation:**
+- **[accesslogs]** Clarify that only header fields may be redacted in access-logs ([#11139](https://github.com/traefik/traefik/pull/11139) by [mattbnz](https://github.com/mattbnz))
+- Update business callout ([#11172](https://github.com/traefik/traefik/pull/11172) by [tomatokoolaid](https://github.com/tomatokoolaid))
+
+## [v2.11.11](https://github.com/traefik/traefik/tree/v2.11.11) (2024-10-02)
+[All Commits](https://github.com/traefik/traefik/compare/v2.11.10...v2.11.11)
+
+**Bug fixes:**
+- **[acme]** Ensure defaultGeneratedCert.main as Subject&#39;s CN ([#10581](https://github.com/traefik/traefik/pull/10581) by [Lamatte](https://github.com/Lamatte))
+- **[middleware,authentication]** Clean connection headers for forward auth request only ([#11095](https://github.com/traefik/traefik/pull/11095) by [rtribotte](https://github.com/rtribotte))
+- **[middleware]** Bump github.com/klauspost/compress to 8e14b1b5a913 ([#11141](https://github.com/traefik/traefik/pull/11141) by [kevinpollet](https://github.com/kevinpollet))
+- **[server]** Rework condition to not log on timeout ([#11133](https://github.com/traefik/traefik/pull/11133) by [rtribotte](https://github.com/rtribotte))
+- **[webui]** Remove unused boot files from webui ([#11109](https://github.com/traefik/traefik/pull/11109) by [michelheusschen](https://github.com/michelheusschen))
+
+**Documentation:**
+- **[accesslogs]** Specify default format value for access log ([#11130](https://github.com/traefik/traefik/pull/11130) by [darkweaver87](https://github.com/darkweaver87))
+- **[api]** Update API documentation to mention pagination ([#11115](https://github.com/traefik/traefik/pull/11115) by [lyrandy](https://github.com/lyrandy))
+
+## [v2.11.10](https://github.com/traefik/traefik/tree/v2.11.10) (2024-09-19)
+[All Commits](https://github.com/traefik/traefik/compare/v2.11.9...v2.11.10)
+
+**Bug fixes:**
+- **[http3]** Bump github.com/quic-go/quic-go to v0.47.0 ([#11104](https://github.com/traefik/traefik/pull/11104) by [rtribotte](https://github.com/rtribotte))
+- **[server]** Check if ACME certificate resolver is not nil ([#11103](https://github.com/traefik/traefik/pull/11103) by [kevinpollet](https://github.com/kevinpollet))
+
+## [v2.11.9](https://github.com/traefik/traefik/tree/v2.11.9) (2024-09-16)
+[All Commits](https://github.com/traefik/traefik/compare/v2.11.8...v2.11.9)
+
+**Bug fixes:**
+- **[acme]** Update go-acme/lego to v4.18.0 ([#11060](https://github.com/traefik/traefik/pull/11060) by [ldez](https://github.com/ldez))
+- **[acme]** Allow handling ACME challenges with custom routers ([#10981](https://github.com/traefik/traefik/pull/10981) by [rtribotte](https://github.com/rtribotte))
+- **[logs,middleware]** Make the keys of the accessLog.fields.names map case-insensitive ([#11040](https://github.com/traefik/traefik/pull/11040) by [SpecLad](https://github.com/SpecLad))
+- **[logs,middleware]** Ensure proper logs for aborted streaming responses ([#10819](https://github.com/traefik/traefik/pull/10819) by [hood](https://github.com/hood))
+- **[middleware,server]** Cleanup Connection headers before passing the middleware chain ([#11077](https://github.com/traefik/traefik/pull/11077) by [kevinpollet](https://github.com/kevinpollet))
+- **[plugins]** Upgrade paerser to v0.2.1 ([#11048](https://github.com/traefik/traefik/pull/11048) by [mmatur](https://github.com/mmatur))
+- **[server,tcp]** Prevent error logging when TCP WRR pool is empty ([#10989](https://github.com/traefik/traefik/pull/10989) by [kevinpollet](https://github.com/kevinpollet))
+- **[webui]** Upgrade webui dependencies ([#11031](https://github.com/traefik/traefik/pull/11031) by [mloiseleur](https://github.com/mloiseleur))
+
+**Documentation:**
+- **[acme]** Fix typo in multiple DNS challenge provider warning ([#11001](https://github.com/traefik/traefik/pull/11001) by [tired-engineer](https://github.com/tired-engineer))
+- **[k8s]** Update k8s quickstart permissions ([#11049](https://github.com/traefik/traefik/pull/11049) by [mmatur](https://github.com/mmatur))
+- **[metrics]** Remove documentation for unimplemented service retries metric  ([#10983](https://github.com/traefik/traefik/pull/10983) by [rtribotte](https://github.com/rtribotte))
+- **[middleware]** Unify tab titles ([#11072](https://github.com/traefik/traefik/pull/11072) by [jsoref](https://github.com/jsoref))
+- Give valid examples for exposing dashboard with default Helm values ([#11015](https://github.com/traefik/traefik/pull/11015) by [holysoles](https://github.com/holysoles))
+
 ## [v2.11.8](https://github.com/traefik/traefik/tree/v2.11.8) (2024-08-06)
 [All Commits](https://github.com/traefik/traefik/compare/v2.11.7...v2.11.8)
 

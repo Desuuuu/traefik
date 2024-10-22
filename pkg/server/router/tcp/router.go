@@ -21,6 +21,8 @@ const defaultBufSize = 4096
 
 // Router is a TCP router.
 type Router struct {
+	acmeTLSPassthrough bool
+
 	// Contains TCP routes.
 	muxerTCP tcpmuxer.Muxer
 	// Contains TCP TLS routes.
@@ -148,7 +150,7 @@ func (r *Router) ServeTCP(conn tcp.WriteCloser) {
 	}
 
 	// Handling ACME-TLS/1 challenges.
-	if slices.Contains(hello.protos, tlsalpn01.ACMETLS1Protocol) {
+	if !r.acmeTLSPassthrough && slices.Contains(hello.protos, tlsalpn01.ACMETLS1Protocol) {
 		r.acmeTLSALPNHandler().ServeTCP(r.GetConn(conn, hello.peeked))
 		return
 	}
@@ -303,6 +305,10 @@ func (r *Router) SetHTTPSHandler(handler http.Handler, config *tls.Config) {
 	r.httpsTLSConfig = config
 }
 
+func (r *Router) EnableACMETLSPassthrough() {
+	r.acmeTLSPassthrough = true
+}
+
 // Conn is a connection proxy that handles Peeked bytes.
 type Conn struct {
 	// Peeked are the bytes that have been read from Conn for the purposes of route matching,
@@ -343,7 +349,7 @@ func clientHelloInfo(br *bufio.Reader) (*clientHello, error) {
 	hdr, err := br.Peek(1)
 	if err != nil {
 		var opErr *net.OpError
-		if !errors.Is(err, io.EOF) && (!errors.As(err, &opErr) || opErr.Timeout()) {
+		if !errors.Is(err, io.EOF) && (!errors.As(err, &opErr) || !opErr.Timeout()) {
 			log.WithoutContext().Errorf("Error while Peeking first byte: %s", err)
 		}
 		return nil, err
